@@ -1,3 +1,4 @@
+# -*-coding:utf-8 -*-
 # Copyright 2015 The TensorFlow Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,20 +16,28 @@
 r"""Simple transfer learning with Inception v3 or Mobilenet models.
 
 With support for TensorBoard.
+基于Inception_v3的简单的迁移学习，支持TensorBoard
+
 
 This example shows how to take a Inception v3 or Mobilenet model trained on
 ImageNet images, and train a new top layer that can recognize other classes of
 images.
+此例展示如何利用（基于ImageNet图像训练好的）Inception_v3模型，并训练新的顶层以实现图像分类
+
 
 The top layer receives as input a 2048-dimensional vector (1001-dimensional for
 Mobilenet) for each image. We train a softmax layer on top of this
 representation. Assuming the softmax layer contains N labels, this corresponds
 to learning N + 2048*N (or 1001*N)  model parameters corresponding to the
 learned biases and weights.
-
+每个图像（预测）里，顶层接收一个2048维度的向量作为输入，在这一表示（基础）上
+我们训练一个softmax层，假设这个softmax层含有N个类别，这对应于学习N+2048*N个
+模型参数对应于学习偏差和权重。
 Here's an example, which assumes you have a folder containing class-named
 subfolders, each full of images for each label. The example folder flower_photos
 should have a structure like this:
+这里有一个例子，假设你有一文件夹，其包含以类别命名的子文件夹，每个子文件夹中都
+放置对应类别的图片。示例文件夹flower_photos中含有（这样的）结构：
 
 ~/flower_photos/daisy/photo1.jpg
 ~/flower_photos/daisy/photo2.jpg
@@ -40,7 +49,8 @@ should have a structure like this:
 The subfolder names are important, since they define what label is applied to
 each image, but the filenames themselves don't matter. Once your images are
 prepared, you can run the training with a command like this:
-
+子文件夹的名字很重要，它们定义了每张图片的归类标签，而每张图片的名字是什么本身是没关系的。
+一旦你的图片准备好了，你可以使用如下命令启动训练:
 
 ```bash
 bazel build tensorflow/examples/image_retraining:retrain && \
@@ -59,15 +69,19 @@ python tensorflow/examples/image_retraining/retrain.py \
 You can replace the image_dir argument with any folder containing subfolders of
 images. The label for each image is taken from the name of the subfolder it's
 in.
+你可以替换image_dir 参数为包含所需图片子文件夹的任何文件。每张图片的标签来自子文件夹的名字。
+
 
 This produces a new model file that can be loaded and run by any TensorFlow
 program, for example the label_image sample code.
+程序将产生一个新的模型文件用于任何TensorFlow项目的加载和运行，例如label_image样例代码。
 
 By default this script will use the high accuracy, but comparatively large and
 slow Inception v3 model architecture. It's recommended that you start with this
 to validate that you have gathered good training data, but if you want to deploy
 on resource-limited platforms, you can try the `--architecture` flag with a
 Mobilenet model. For example:
+我们推荐使用Inception v3，但是如果因为平台的限制，你也可以使用Mobilenet模型：
 
 ```bash
 python tensorflow/examples/image_retraining/retrain.py \

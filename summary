@@ -1,0 +1,62 @@
+export PATH=/usr/local/cuda-8.0/bin/:$PATH
+export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64:$LD_LIBRARY_PATH
+
+
+python scripts/retrain.py  --image_dir ./tf_files/flower_photos
+python scripts/label_image.py --graph=tf_files/retrained_graph.pb --image=tf_files/flower_photos/daisy/3475870145_685a19116d.jpg
+
+
+https://codelabs.developers.google.com/codelabs/tensorflow-for-poets-2/#1
+
+hy@hy-desktop:/devdata/AI/CNN/tensorflow-for-poets-2$ python scripts/label_image.py --graph=tf_files/retrained_graph.pb --image=tf_files/flower_photos/daisy/3475870145_685a19116d.jpg
+2018-01-24 19:27:32.670293: I tensorflow/core/platform/cpu_feature_guard.cc:137] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX
+2018-01-24 19:27:32.946753: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:892] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2018-01-24 19:27:32.947174: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1030] Found device 0 with properties: 
+name: GeForce GTX 1050 Ti major: 6 minor: 1 memoryClockRate(GHz): 1.468
+pciBusID: 0000:03:00.0
+totalMemory: 3.94GiB freeMemory: 3.07GiB
+2018-01-24 19:27:32.947211: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: GeForce GTX 1050 Ti, pci bus id: 0000:03:00.0, compute capability: 6.1)
+2018-01-24 19:27:33.347605: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: GeForce GTX 1050 Ti, pci bus id: 0000:03:00.0, compute capability: 6.1)
+
+Evaluation time (1-image): 1.229s
+
+daisy 0.736099
+dandelion 0.242223
+tulips 0.0185161
+roses 0.00315437
+sunflowers 8.00981e-06
+hy@hy-desktop:/devdata/AI/CNN/tensorflow-for-poets-2$ python scripts/label_image.py --graph=tf_files/retrained_graph.pb --image=tf_files/flower_photos/11.jpg 
+2018-01-24 19:29:54.374247: I tensorflow/core/platform/cpu_feature_guard.cc:137] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX
+2018-01-24 19:29:54.633372: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:892] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2018-01-24 19:29:54.633794: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1030] Found device 0 with properties: 
+name: GeForce GTX 1050 Ti major: 6 minor: 1 memoryClockRate(GHz): 1.468
+pciBusID: 0000:03:00.0
+totalMemory: 3.94GiB freeMemory: 3.05GiB
+2018-01-24 19:29:54.633831: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: GeForce GTX 1050 Ti, pci bus id: 0000:03:00.0, compute capability: 6.1)
+2018-01-24 19:29:55.029707: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: GeForce GTX 1050 Ti, pci bus id: 0000:03:00.0, compute capability: 6.1)
+
+Evaluation time (1-image): 1.224s
+
+roses 0.999997
+tulips 2.55031e-06
+sunflowers 9.99292e-08
+dandelion 1.54982e-10
+daisy 8.32802e-13
+hy@hy-desktop:/devdata/AI/CNN/tensorflow-for-poets-2$ python scripts/label_image.py --graph=tf_files/retrained_graph.pb --image=tf_files/flower_photos/22.jpg 
+2018-01-24 19:31:08.269282: I tensorflow/core/platform/cpu_feature_guard.cc:137] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX
+2018-01-24 19:31:08.498137: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:892] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2018-01-24 19:31:08.498558: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1030] Found device 0 with properties: 
+name: GeForce GTX 1050 Ti major: 6 minor: 1 memoryClockRate(GHz): 1.468
+pciBusID: 0000:03:00.0
+totalMemory: 3.94GiB freeMemory: 3.05GiB
+2018-01-24 19:31:08.498596: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: GeForce GTX 1050 Ti, pci bus id: 0000:03:00.0, compute capability: 6.1)
+2018-01-24 19:31:08.901028: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: GeForce GTX 1050 Ti, pci bus id: 0000:03:00.0, compute capability: 6.1)
+
+Evaluation time (1-image): 1.217s
+
+sunflowers 0.996317
+daisy 0.00335572
+roses 0.000265982
+dandelion 5.77632e-05
+tulips 4.05759e-06
+
